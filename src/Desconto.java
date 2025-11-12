@@ -1,4 +1,4 @@
-public class Desconto {// Desconto.java
+public interface Desconto {
         double calcularDesconto(double valor);
     }
 }
