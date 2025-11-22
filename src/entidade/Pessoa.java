@@ -1,7 +1,8 @@
+package entidade;
+
 public class Pessoa {
     private int id;
     private String nome;
-    private String cpf;
 
     public Pessoa (int id, String nome) {
         this.id = id;
@@ -22,10 +23,6 @@ public class Pessoa {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public void falar() {
-        System.out.println("Eu sou " + nome);
     }
 
     @Override
