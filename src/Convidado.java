@@ -1,29 +1,35 @@
- package modelo;
-
-import desconto.Desconto;
-import desconto.DescontoRegular;
-import desconto.DescontoVIP;
-
-
-    public class Convidado {
+public class Convidado {
+        private Integer id;
         private String nome;
-        private String tipo; // Ex: "VIP", "Regular" [cite: 3, 16]
-        private Desconto estrategiaDesconto;
+        private String tipo; // Ex: "VIP", "Regular"
 
-        public Convidado(String nome, String tipo) {
+        public Convidado(Integer id, String nome, String tipo) {
+            this.id = id;
             this.nome = nome;
             this.tipo = tipo;
-            // Configuração da estratégia de desconto (DIP/OCP)
-            if (tipo.equalsIgnoreCase("VIP")) {
-                this.estrategiaDesconto = new DescontoVIP();
-            } else {
-                this.estrategiaDesconto = new DescontoRegular();
-            }
         }
 
-        public String getNome() { return nome; }
-        public String getTipo() { return tipo; }
-        public Desconto getEstrategiaDesconto() { return estrategiaDesconto; }
-    }
-}
+        public Integer getId() {
+            return id;
+        }
 
+        public void setId(Integer id) {
+            this.id = id;
+        }
+
+        public String getNome() {
+            return nome;
+        }
+
+        public void setNome(String nome) {
+            this.nome = nome;
+        }
+
+        public String getTipo() {
+            return tipo;
+        }
+
+        public void setTipo(String tipo) {
+            this.tipo = tipo;
+        }
+    }
