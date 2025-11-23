@@ -34,7 +34,7 @@ public class Main {
             ItemMenu picanha = new ItemMenu(1, "Picanha Grelhada", "Refeicao", 80.0, false);
             ItemMenu vinhoVIP = new ItemMenu(2, "Vinho Reserva Especial", "Bebida", 120.0, true);
             ItemMenu agua = new ItemMenu(3, "Agua Mineral", "Bebida", 8.0, false);
-
+            ItemMenu suco = new ItemMenu(4, "suco suiço", "Bebida", 20, true);
             System.out.println();
             System.out.println("Cardapio criado:");
             System.out.println("  - " + picanha);

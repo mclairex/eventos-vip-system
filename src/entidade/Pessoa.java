@@ -13,16 +13,16 @@ public abstract class Pessoa {
         return id;
     }
 
-    public String getNome() {  // ✅ CORRIGIDO: getNone → getNome
+    public String getNome() {  
         return nome;
     }
 
-    public void setNome(String nome) {  // ✅ CORRIGIDO: setNone → setNome
+    public void setNome(String nome) {  
         this.nome = nome;
     }
 
     @Override
     public String toString() {
-        return "ID: " + id + ", Nome: " + nome;  // ✅ CORRIGIDO: None → Nome
+        return "ID: " + id + ", Nome: " + nome;  
     }
 }
