@@ -30,7 +30,7 @@ public class Main {
             garcom.atribuirMesa(mesa.getNumero());
             System.out.println("Garcom atribuido a mesa");
 
-            // 5. Criar itens do cardapio
+            //  Criar itens do cardapio
             ItemMenu picanha = new ItemMenu(1, "Picanha Grelhada", "Refeicao", 80.0, false);
             ItemMenu vinhoVIP = new ItemMenu(2, "Vinho Reserva Especial", "Bebida", 120.0, true);
             ItemMenu agua = new ItemMenu(3, "Agua Mineral", "Bebida", 8.0, false);
@@ -41,7 +41,7 @@ public class Main {
             System.out.println("  - " + vinhoVIP);
             System.out.println("  - " + agua);
 
-            // 6. Criar pedido
+            //  Criar pedido
             Pedido pedido = new Pedido(mesa);
             pedido.adicionarItem(picanha);
             pedido.adicionarItem(vinhoVIP); // Item VIP - permitido porque tem convidado VIP
