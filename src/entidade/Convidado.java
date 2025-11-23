@@ -12,6 +12,11 @@ public class Convidado extends Pessoa {
         super(id, nome);
         this.tipo = tipo.toUpperCase();
 
+        // Validação do tipo
+        if (!this.tipo.equals("VIP") && !this.tipo.equals("REGULAR")) {
+            throw new IllegalArgumentException("Tipo de convidado inválido: " + tipo);
+        }
+
         if (this.tipo.equals("VIP")) {
             this.estrategiaDesconto = new DescontoVIP();
         } else {
@@ -21,17 +26,27 @@ public class Convidado extends Pessoa {
 
     public String getTipo() {
         return tipo;
-    } 
-    
+    }
+
     public boolean isVIP() {
         return tipo.equals("VIP");
     }
-    public double calcularValorFinal(double valor){
-        return valor - calcularValorFinal(valor);
+
+    public double calcularValorFinal(double valor) {
+        double desconto = estrategiaDesconto.calcularDesconto(valor);
+        return valor - desconto;
+    }
+
+    public double getValorDesconto(double valor) {
+        return estrategiaDesconto.calcularDesconto(valor);
+    }
+
+    public String getDescricaoDesconto() {
+        return estrategiaDesconto.getDescricao();
     }
 
     @Override
-    public String toString(){
-        return super.toString() + ", Tipo: " + tipo;
+    public String toString() {
+        return super.toString() + ", Tipo: " + tipo + ", " + estrategiaDesconto.getDescricao();
     }
 }

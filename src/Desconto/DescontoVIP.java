@@ -8,9 +8,6 @@ public class DescontoVIP implements Desconto {
     }
     @Override
     public String getDescricao(){
-        return "Desconto VIp (10%)";
+        return "Desconto Vip (10%)";
     }
 }
-
-
-
