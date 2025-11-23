@@ -3,22 +3,33 @@ import entidade.Pedido;
 import entidade.Mesa;
 import entidade.Convidado;
 import entidade.ItemMenu;
+import entidade.Evento;
+import entidade.Tema;
+import entidade.Persistencia;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        // DECLARA cardapio FORA do try
+        List<ItemMenu> cardapio = null;
+
         try {
             System.out.println("=== SISTEMA EVENTOS VIP - DEMONSTRACAO ===");
             System.out.println();
 
-            // 1. Criar garcom
+            // CARREGA CARDÁPIO AGORA
+            cardapio = Persistencia.carregarCardapio();
+
+            // Cria garcom
             Garcom garcom = new Garcom(1, "Joao");
             System.out.println("Garcom criado: " + garcom.getNome());
 
-            // 2. Criar mesa
+            // Cria mesa
             Mesa mesa = new Mesa(5);
             System.out.println("Mesa criada: " + mesa.getNumero());
 
-            // 3. Adicionar convidados
+            // Adiciona convidados
             Convidado convidadoVIP = new Convidado(1, "Maria Silva", "VIP");
             Convidado convidadoRegular = new Convidado(2, "Jose Santos", "Regular");
 
@@ -26,40 +37,36 @@ public class Main {
             mesa.adicionarConvidado(convidadoRegular);
             System.out.println("Convidados adicionados: " + mesa.getConvidados().size() + " convidados");
 
-            // 4. Garcom atribui mesa
+            // Garcom atribui mesa
             garcom.atribuirMesa(mesa.getNumero());
             System.out.println("Garcom atribuido a mesa");
 
-            // 5. Criar itens do cardapio
-            ItemMenu picanha = new ItemMenu(1, "Picanha Grelhada", "Refeicao", 80.0, false);
-            ItemMenu vinhoVIP = new ItemMenu(2, "Vinho Reserva Especial", "Bebida", 120.0, true);
-            ItemMenu agua = new ItemMenu(3, "Agua Mineral", "Bebida", 8.0, false);
-
+            // USA CARDÁPIO CARREGADO em vez de criar novos itens
             System.out.println();
-            System.out.println("Cardapio criado:");
-            System.out.println("  - " + picanha);
-            System.out.println("  - " + vinhoVIP);
-            System.out.println("  - " + agua);
+            System.out.println("Cardapio carregado:");
+            for (ItemMenu item : cardapio) {
+                System.out.println("  - " + item);
+            }
 
-            // 6. Criar pedido
+            // Cria pedido
             Pedido pedido = new Pedido(mesa);
-            pedido.adicionarItem(picanha);
-            pedido.adicionarItem(vinhoVIP); // Item VIP - permitido porque tem convidado VIP
-            pedido.adicionarItem(agua);
+            // Usa itens do cardápio carregado
+            pedido.adicionarItem(cardapio.get(0)); // Picanha
+            pedido.adicionarItem(cardapio.get(1)); // Vinho VIP
+            pedido.adicionarItem(cardapio.get(2)); // Agua
             pedido.setObservacao("Pedido especial para aniversariante");
             mesa.adicionarPedido(pedido);
 
             System.out.println();
             System.out.println("Pedido criado: " + pedido);
 
-            // 7. Registrar pedido no garcom
+            // Registra pedido no garcom
             garcom.registrarPedido(pedido);
 
-            // 8. Notificar garcom
+            // Notifica garcom
             garcom.notificar("Pedido VIP pronto para servir!");
 
-            // 9. Calcular conta total
-            // Na Main, antes da linha que calcula a conta:
+            // Calcula conta total
             mesa.debugConta();
             double contaTotal = mesa.calcularContaTotal();
             System.out.println();
@@ -68,7 +75,7 @@ public class Main {
             System.out.println("  - Desconto VIP (10%): R$ " + convidadoVIP.getValorDesconto(pedido.calcularTotal()));
             System.out.println("  - TOTAL: R$ " + String.format("%.2f", contaTotal));
 
-            // 10. Exibir resumo
+            // Exibi resumo
             System.out.println();
             System.out.println("RESUMO FINAL:");
             System.out.println("  - Mesa: " + mesa);
@@ -76,13 +83,22 @@ public class Main {
             System.out.println("  - Garcom: " + garcom);
             System.out.println("  - Pedidos registrados: " + garcom.getPedidosRegistrados().size());
 
-            // 11. Liberar mesa
+            // Libera mesa
             garcom.liberarMesa();
             System.out.println();
             System.out.println("Mesa liberada - Garcom disponivel");
 
             System.out.println();
             System.out.println("DEMONSTRACAO CONCLUIDA COM SUCESSO!");
+
+            // Salva dados
+            List<Evento> eventos = new ArrayList<>();
+            Evento eventoDemo = new Evento(1, "Festa de Aniversario", new Tema("Festa", "Tema festivo"));
+            eventos.add(eventoDemo);
+
+            Persistencia.salvarEventos(eventos);
+            Persistencia.salvarCardapio(cardapio);
+            System.out.println("✅ Dados salvos com sucesso!");
 
         } catch (Exception e) {
             System.out.println("Erro no sistema: " + e.getMessage());

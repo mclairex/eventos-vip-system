@@ -30,10 +30,10 @@ public class Persistencia {
 
             writer.write("]");
             writer.close();
-            System.out.println("Eventos salvos em: " + ARQUIVO_EVENTOS);
+            System.out.println("✅ Eventos salvos em: " + ARQUIVO_EVENTOS);
 
         } catch (IOException e) {
-            System.out.println("Erro ao salvar eventos: " + e.getMessage());
+            System.out.println("❌ Erro ao salvar eventos: " + e.getMessage());
         }
     }
 
