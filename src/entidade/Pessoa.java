@@ -1,18 +1,16 @@
-public class Pessoa {
-    private int id;
-    private String nome;
+package entidade;
 
-    public Pessoa (int id, String nome) {
+public abstract class Pessoa {
+    protected Integer id;
+    protected String nome;
+
+    public Pessoa (Integer id, String nome) {
         this.id = id;
         this.nome = nome;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNome() {

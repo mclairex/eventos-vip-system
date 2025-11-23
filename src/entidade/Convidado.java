@@ -1,28 +1,37 @@
- package entidade;
+package entidade;
 
-import desconto.Desconto;
-import desconto.DescontoRegular;
-import desconto.DescontoVIP;
+import Desconto.Desconto;
+import Desconto.DescontoRegular;
+import Desconto.DescontoVIP;
 
-    public class Convidado {
-        private String nome;
-        private String tipo;
-        private Desconto estrategiaDesconto;
+public class Convidado extends Pessoa {
+    private String tipo;
+    private Desconto estrategiaDesconto;
 
-        public Convidado(String nome, String tipo) {
-            this.nome = nome;
-            this.tipo = tipo;
-            // Configuração da estratégia de desconto (DIP/OCP)
-            if (tipo.equalsIgnoreCase("VIP")) {
-                this.estrategiaDesconto = new DescontoVIP();
-            } else {
-                this.estrategiaDesconto = new DescontoRegular();
-            }
+    public Convidado(Integer id, String nome, String tipo) {
+        super(id, nome);
+        this.tipo = tipo.toUpperCase();
+
+        if (this.tipo.equals("VIP")) {
+            this.estrategiaDesconto = new DescontoVIP();
+        } else {
+            this.estrategiaDesconto = new DescontoRegular();
         }
+    }
 
-        public String getNome() { return nome; }
-        public String getTipo() { return tipo; }
-        public Desconto getEstrategiaDesconto() { return estrategiaDesconto; }
+    public String getTipo() {
+        return tipo;
+    } 
+    
+    public boolean isVIP() {
+        return tipo.equals("VIP");
+    }
+    public double calcularValorFinal(double valor){
+        return valor - calcularValorFinal(valor);
+    }
+
+    @Override
+    public String toString(){
+        return super.toString() + ", Tipo: " + tipo;
     }
 }
-

@@ -1,3 +1,4 @@
+package Desconto;
 public class Convidado {
         private Integer id;
         private String nome;
