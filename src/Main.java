@@ -10,15 +10,15 @@ public class Main {
             System.out.println("=== SISTEMA EVENTOS VIP - DEMONSTRACAO ===");
             System.out.println();
 
-            // 1. Criar garcom
+            // Criar garçom
             Garcom garcom = new Garcom(1, "Joao");
             System.out.println("Garcom criado: " + garcom.getNome());
 
-            // 2. Criar mesa
+            
             Mesa mesa = new Mesa(5);
             System.out.println("Mesa criada: " + mesa.getNumero());
 
-            // 3. Adicionar convidados
+            // Adicionar convidados
             Convidado convidadoVIP = new Convidado(1, "Maria Silva", "VIP");
             Convidado convidadoRegular = new Convidado(2, "Jose Santos", "Regular");
 
@@ -26,7 +26,7 @@ public class Main {
             mesa.adicionarConvidado(convidadoRegular);
             System.out.println("Convidados adicionados: " + mesa.getConvidados().size() + " convidados");
 
-            // 4. Garcom atribui mesa
+            
             garcom.atribuirMesa(mesa.getNumero());
             System.out.println("Garcom atribuido a mesa");
 
@@ -52,14 +52,13 @@ public class Main {
             System.out.println();
             System.out.println("Pedido criado: " + pedido);
 
-            // 7. Registrar pedido no garcom
+            
             garcom.registrarPedido(pedido);
 
-            // 8. Notificar garcom
+           
             garcom.notificar("Pedido VIP pronto para servir!");
 
-            // 9. Calcular conta total
-            // Na Main, antes da linha que calcula a conta:
+            
             mesa.debugConta();
             double contaTotal = mesa.calcularContaTotal();
             System.out.println();
@@ -68,7 +67,7 @@ public class Main {
             System.out.println("  - Desconto VIP (10%): R$ " + convidadoVIP.getValorDesconto(pedido.calcularTotal()));
             System.out.println("  - TOTAL: R$ " + String.format("%.2f", contaTotal));
 
-            // 10. Exibir resumo
+            
             System.out.println();
             System.out.println("RESUMO FINAL:");
             System.out.println("  - Mesa: " + mesa);
@@ -76,7 +75,7 @@ public class Main {
             System.out.println("  - Garcom: " + garcom);
             System.out.println("  - Pedidos registrados: " + garcom.getPedidosRegistrados().size());
 
-            // 11. Liberar mesa
+            
             garcom.liberarMesa();
             System.out.println();
             System.out.println("Mesa liberada - Garcom disponivel");

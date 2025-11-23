@@ -31,7 +31,7 @@ public class Pagamento {
                     .findFirst()
                     .orElse(null);
             if (vip != null) {
-                this.desconto = vip.getValorDesconto(valorTotal); // ✅ CORRIGIDO
+                this.desconto = vip.getValorDesconto(valorTotal); 
             }
         }
         this.valorFinal = valorTotal - desconto;

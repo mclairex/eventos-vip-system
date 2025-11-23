@@ -12,7 +12,7 @@ public class Convidado extends Pessoa {
         super(id, nome);
         this.tipo = tipo.toUpperCase();
 
-        // Validação do tipo
+        
         if (!this.tipo.equals("VIP") && !this.tipo.equals("REGULAR")) {
             throw new IllegalArgumentException("Tipo de convidado inválido: " + tipo);
         }
