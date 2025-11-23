@@ -8,7 +8,7 @@ public class DescontoRegular implements Desconto {
     
     @Override
     public String getDescricao() {
-        return "Nao possui desconto (Regular)";
+        return "Nao possui desconto";
     }
 }
 

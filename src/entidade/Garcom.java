@@ -36,7 +36,7 @@ public class Garcom extends Pessoa {
         System.out.println("Garçom " + nome + " está atendendo a Mesa " + numeroMesa);
     }
 
-    // 🔧 CORREÇÃO CRÍTICA AQUI
+    
     public void liberarMesa(){
         if (mesaAtendida == null){
             return;

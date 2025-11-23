@@ -2,7 +2,7 @@ package Desconto;
 public class Convidado {
         private Integer id;
         private String nome;
-        private String tipo; // Ex: "VIP", "Regular"
+        private String tipo; // VIP ou regular
 
         public Convidado(Integer id, String nome, String tipo) {
             this.id = id;

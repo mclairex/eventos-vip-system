@@ -26,7 +26,7 @@ public class Mesa {
         }
         convidados.add(convidado);
 
-        // Se tem VIP, personaliza a mesa
+        
         if (convidado.isVIP() && !reservadaVIP) {
             decoracao = "Decoração VIP Premium";
             reservadaVIP = true;
@@ -52,7 +52,7 @@ public class Mesa {
     public double calcularContaTotal() {
         double total = pedidos.stream().mapToDouble(Pedido::calcularTotal).sum();
 
-        // Aplica desconto VIP no total da mesa
+        
         if (temConvidadoVIP()) {
             Convidado vip = convidados.stream()
                     .filter(Convidado::isVIP)
@@ -67,14 +67,14 @@ public class Mesa {
     }
 
     public void debugConta() {
-        System.out.println("=== DEBUG CONTA ===");
+        System.out.println("=== COMANDA ===");
         System.out.println("Número de pedidos: " + pedidos.size());
         for (Pedido p : pedidos) {
             System.out.println("Pedido " + p.getId() + ": R$ " + p.calcularTotal());
         }
         double subtotal = pedidos.stream().mapToDouble(Pedido::calcularTotal).sum();
         System.out.println("Subtotal: R$ " + subtotal);
-        System.out.println("Tem VIP: " + temConvidadoVIP());
+        System.out.println("Tem VIP: " + (temConvidadoVIP() ? "sim" : "nao"));
         System.out.println("===================");
     }
 

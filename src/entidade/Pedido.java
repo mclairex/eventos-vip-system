@@ -18,7 +18,7 @@ public class Pedido {
     }
 
     public void adicionarItem(ItemMenu item) {
-        // Valida se item VIP pode ser adicionado
+        
         if (item.isExclusivoVIP() && !mesa.temConvidadoVIP()) {
             throw new IllegalArgumentException("Item VIP requer convidado VIP na mesa");
         }

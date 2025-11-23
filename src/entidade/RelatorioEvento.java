@@ -24,7 +24,7 @@ public class RelatorioEvento {
             totalGeral += totalMesa;
             sb.append(String.format("Mesa %d: R$ %.2f (%d convidados)%s\n",
                     mesa.getNumero(), totalMesa, mesa.getConvidados().size(),
-                    mesa.temConvidadoVIP() ? " ⭐ VIP" : ""));
+                    mesa.temConvidadoVIP() ? "  VIP" : ""));
         }
 
         sb.append("\n--- Faturamento Total ---\n");
