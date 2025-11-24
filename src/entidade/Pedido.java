@@ -25,6 +25,7 @@ public class Pedido {
         itens.add(item);
     }
 
+    
     public void setObservacao(String obs) {
         this.observacao = obs;
     }
