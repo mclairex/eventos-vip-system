@@ -53,17 +53,17 @@ public class Main {
             // Usa itens do cardápio carregado
             pedido.adicionarItem(cardapio.get(0)); // Picanha
             pedido.adicionarItem(cardapio.get(1)); // Vinho VIP
-            pedido.adicionarItem(cardapio.get(2)); // Agua
+            pedido.adicionarItem(cardapio.get(2)); // Água
             pedido.setObservacao("Pedido especial para aniversariante");
             mesa.adicionarPedido(pedido);
 
             System.out.println();
             System.out.println("Pedido criado: " + pedido);
 
-            // Registra pedido no garcom
+            // Registra pedido no garçom
             garcom.registrarPedido(pedido);
 
-            // Notifica garcom
+            // Notifica garçom
             garcom.notificar("Pedido VIP pronto para servir!");
 
             // Calcula conta total
@@ -75,7 +75,7 @@ public class Main {
             System.out.println("  - Desconto VIP (10%): R$ " + convidadoVIP.getValorDesconto(pedido.calcularTotal()));
             System.out.println("  - TOTAL: R$ " + String.format("%.2f", contaTotal));
 
-            // Exibi resumo
+            // Exibe resumo
             System.out.println();
             System.out.println("RESUMO FINAL:");
             System.out.println("  - Mesa: " + mesa);
@@ -98,7 +98,7 @@ public class Main {
 
             Persistencia.salvarEventos(eventos);
             Persistencia.salvarCardapio(cardapio);
-            System.out.println("✅ Dados salvos com sucesso!");
+            System.out.println(" Dados salvos com sucesso!");
 
         } catch (Exception e) {
             System.out.println("Erro no sistema: " + e.getMessage());
