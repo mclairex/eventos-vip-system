@@ -18,7 +18,7 @@ public class Pedido {
     }
 
     public void adicionarItem(ItemMenu item) {
-        
+
         if (item.isExclusivoVIP() && !mesa.temConvidadoVIP()) {
             throw new IllegalArgumentException("Item VIP requer convidado VIP na mesa");
         }
@@ -33,9 +33,17 @@ public class Pedido {
         return itens.stream().mapToDouble(ItemMenu::getPreco).sum();
     }
 
-    public Integer getId() { return id; }
-    public Mesa getMesa() { return mesa; }
-    public List<ItemMenu> getItens() { return new ArrayList<>(itens); }
+    public Integer getId() {
+        return id;
+    }
+
+    public Mesa getMesa() {
+        return mesa;
+    }
+
+    public List<ItemMenu> getItens() {
+        return new ArrayList<>(itens);
+    }
 
     @Override
     public String toString() {

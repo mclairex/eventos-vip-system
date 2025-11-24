@@ -11,7 +11,8 @@ public class Persistencia {
     public static void salvarEventos(List<Evento> eventos) {
         try {
             File diretorio = new File("data");
-            if (!diretorio.exists()) diretorio.mkdir();
+            if (!diretorio.exists())
+                diretorio.mkdir();
 
             FileWriter writer = new FileWriter(ARQUIVO_EVENTOS);
             writer.write("[\n");
@@ -24,7 +25,8 @@ public class Persistencia {
                 writer.write("    \"tema\": \"" + evento.getTema().getNome() + "\",\n");
                 writer.write("    \"mesas\": " + evento.getMesas().size() + "\n");
                 writer.write("  }");
-                if (i < eventos.size() - 1) writer.write(",");
+                if (i < eventos.size() - 1)
+                    writer.write(",");
                 writer.write("\n");
             }
 
@@ -40,7 +42,8 @@ public class Persistencia {
     public static void salvarCardapio(List<ItemMenu> cardapio) {
         try {
             File diretorio = new File("data");
-            if (!diretorio.exists()) diretorio.mkdir();
+            if (!diretorio.exists())
+                diretorio.mkdir();
 
             FileWriter writer = new FileWriter(ARQUIVO_CARDAPIO);
             writer.write("[\n");
@@ -54,7 +57,8 @@ public class Persistencia {
                 writer.write("    \"preco\": " + item.getPreco() + ",\n");
                 writer.write("    \"vip\": " + item.isExclusivoVIP() + "\n");
                 writer.write("  }");
-                if (i < cardapio.size() - 1) writer.write(",");
+                if (i < cardapio.size() - 1)
+                    writer.write(",");
                 writer.write("\n");
             }
 
@@ -76,7 +80,6 @@ public class Persistencia {
                 return criarCardapioPadrao();
             }
 
-            // Leitura simples - poderia usar GSON para parsing completo
             System.out.println("Cardápio carregado do arquivo.");
 
         } catch (Exception e) {

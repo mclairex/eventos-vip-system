@@ -44,24 +44,36 @@ public class MenuConsole {
 
             try {
                 int opcao = scanner.nextInt();
-                scanner.nextLine(); // Limpar buffer
-
+                scanner.nextLine();
                 switch (opcao) {
-                    case 1: menuEventos(); break;
-                    case 2: menuMesas(); break;
-                    case 3: menuConvidados(); break;
-                    case 4: menuPedidos(); break;
-                    case 5: menuRelatorios(); break;
-                    case 6: salvarDados(); break;
+                    case 1:
+                        menuEventos();
+                        break;
+                    case 2:
+                        menuMesas();
+                        break;
+                    case 3:
+                        menuConvidados();
+                        break;
+                    case 4:
+                        menuPedidos();
+                        break;
+                    case 5:
+                        menuRelatorios();
+                        break;
+                    case 6:
+                        salvarDados();
+                        break;
                     case 0:
                         System.out.println("Saindo do sistema...");
                         rodando = false;
                         break;
-                    default: System.out.println("Opção inválida!");
+                    default:
+                        System.out.println("Opção inválida!");
                 }
             } catch (java.util.InputMismatchException e) {
                 System.out.println("Entrada inválida. Por favor, digite um número.");
-                scanner.nextLine(); // Limpa a entrada inválida
+                scanner.nextLine();
             }
         }
     }
@@ -79,10 +91,16 @@ public class MenuConsole {
                 scanner.nextLine();
 
                 switch (opcao) {
-                    case 1: criarEvento(); break;
-                    case 2: listarEventos(); break;
-                    case 3: return;
-                    default: System.out.println("Opção inválida!");
+                    case 1:
+                        criarEvento();
+                        break;
+                    case 2:
+                        listarEventos();
+                        break;
+                    case 3:
+                        return;
+                    default:
+                        System.out.println("Opção inválida!");
                 }
             } catch (java.util.InputMismatchException e) {
                 System.out.println("Entrada inválida.");
@@ -137,12 +155,22 @@ public class MenuConsole {
                 scanner.nextLine();
 
                 switch (opcao) {
-                    case 1: criarMesa(); break;
-                    case 2: listarMesas(); break;
-                    case 3: adicionarConvidadoMesa(); break;
-                    case 4: atribuirGarcomMesa(); break;
-                    case 5: return;
-                    default: System.out.println("Opção inválida!");
+                    case 1:
+                        criarMesa();
+                        break;
+                    case 2:
+                        listarMesas();
+                        break;
+                    case 3:
+                        adicionarConvidadoMesa();
+                        break;
+                    case 4:
+                        atribuirGarcomMesa();
+                        break;
+                    case 5:
+                        return;
+                    default:
+                        System.out.println("Opção inválida!");
                 }
             } catch (java.util.InputMismatchException e) {
                 System.out.println("Entrada inválida.");
@@ -267,13 +295,16 @@ public class MenuConsole {
             }
         } else {
             System.out.println("Mesa ou convidado não encontrado.");
-            if (optConvidado.isEmpty()) System.out.println("  - Convidado ID " + idConvidado + " não existe");
-            if (optMesa.isEmpty()) System.out.println("  - Mesa " + numeroMesa + " não existe");
+            if (optConvidado.isEmpty())
+                System.out.println("  - Convidado ID " + idConvidado + " não existe");
+            if (optMesa.isEmpty())
+                System.out.println("  - Mesa " + numeroMesa + " não existe");
         }
     }
 
     private static int contarMesasDoGarcom(Garcom garcom) {
-        if (garcom == null) return 0;
+        if (garcom == null)
+            return 0;
 
         // Conta quantas mesas estão atualmente atribuídas a este garçom
         long count = mesas.stream()
@@ -288,7 +319,7 @@ public class MenuConsole {
             return;
         }
 
-        // 1. Mostrar mesas disponíveis (sem garçom)
+        // mesas disponíveis (sem garçom)
         List<Mesa> mesasDisponiveis = mesas.stream()
                 .filter(m -> m.getGarcom() == null)
                 .collect(Collectors.toList());
@@ -319,10 +350,9 @@ public class MenuConsole {
             }
         }
 
-
         System.out.print("\n Número da mesa para atribuir garçom: ");
         int numeroMesa = scanner.nextInt();
-        scanner.nextLine(); // Limpar buffer
+        scanner.nextLine();
 
         Mesa mesa = mesas.stream()
                 .filter(m -> m.getNumero() == numeroMesa)
@@ -334,13 +364,13 @@ public class MenuConsole {
             return;
         }
 
-        // 2. Bloqueio: A Mesa já tem Garçom? (Continua valendo)
+        // A Mesa já tem Garçom? (Continua valendo)
         if (mesa.getGarcom() != null) {
-            System.out.println("\n AVISO: A Mesa " + numeroMesa + " já está atribuída ao garçom " + mesa.getGarcom().getNome() + ".");
-            return; // Retorna para o menu sem avançar
+            System.out.println("\n AVISO: A Mesa " + numeroMesa + " já está atribuída ao garçom "
+                    + mesa.getGarcom().getNome() + ".");
+            return;
         }
 
-        // 3. Mostrar garçons disponíveis (capacidade <= 1 mesa)
         System.out.println("\n GARÇONS DISPONÍVEIS:");
         List<Garcom> garconsDisponiveis = new ArrayList<>();
 
@@ -363,7 +393,6 @@ public class MenuConsole {
             return;
         }
 
-
         System.out.print("Escolha o garçom (número): ");
         int escolha = scanner.nextInt();
         scanner.nextLine();
@@ -371,14 +400,16 @@ public class MenuConsole {
         if (escolha > 0 && escolha <= garcons.size()) {
             Garcom garcomEscolhido = garcons.get(escolha - 1);
 
-            // 4. Segunda verificação de capacidade (caso o usuário escolha um garçom 'Cheio')
+            // Segunda verificação de capacidade (caso o usuário escolha um garçom ocupado)
             if (contarMesasDoGarcom(garcomEscolhido) >= 2) {
-                System.out.println("ERRO: Garçom " + garcomEscolhido.getNome() + " já está com 2 mesas e não pode receber mais atribuições.");
+                System.out.println("ERRO: Garçom " + garcomEscolhido.getNome()
+                        + " já está com 2 mesas e não pode receber mais atribuições.");
                 return;
             }
 
             mesa.atribuirGarcom(garcomEscolhido);
-            System.out.println("Garçom " + garcomEscolhido.getNome() + " atribuído à mesa " + numeroMesa + " com sucesso!");
+            System.out.println(
+                    "Garçom " + garcomEscolhido.getNome() + " atribuído à mesa " + numeroMesa + " com sucesso!");
         } else {
             System.out.println("Escolha de garçom inválida.");
         }
@@ -397,10 +428,16 @@ public class MenuConsole {
                 scanner.nextLine();
 
                 switch (opcao) {
-                    case 1: cadastrarConvidado(); break;
-                    case 2: listarConvidados(); break;
-                    case 3: return;
-                    default: System.out.println("Opção inválida!");
+                    case 1:
+                        cadastrarConvidado();
+                        break;
+                    case 2:
+                        listarConvidados();
+                        break;
+                    case 3:
+                        return;
+                    default:
+                        System.out.println("Opção inválida!");
                 }
             } catch (java.util.InputMismatchException e) {
                 System.out.println("Entrada inválida.");
@@ -419,7 +456,7 @@ public class MenuConsole {
         System.out.print("Escolha: ");
 
         int tipoOpcao = scanner.nextInt();
-        scanner.nextLine(); // limpar buffer
+        scanner.nextLine();
 
         String tipo;
         switch (tipoOpcao) {
@@ -465,13 +502,11 @@ public class MenuConsole {
             return;
         }
 
-        // 1. Exibir o CARDÁPIO
         System.out.println("\n CARDÁPIO:");
         for (int i = 0; i < cardapio.size(); i++) {
             System.out.println((i + 1) + ". " + cardapio.get(i));
         }
 
-        // 2. Exibir as MESAS CADASTRADAS
         System.out.println("\n---------------------------------");
         System.out.println("MESAS CADASTRADAS:");
         if (mesas.isEmpty()) {
@@ -492,7 +527,6 @@ public class MenuConsole {
         }
         System.out.println("---------------------------------");
 
-        // 3. Solicitar o número da mesa
         System.out.print("\nNúmero da mesa para o pedido: ");
         int numeroMesa = scanner.nextInt();
         scanner.nextLine();
@@ -514,7 +548,8 @@ public class MenuConsole {
             int escolha = scanner.nextInt();
             scanner.nextLine();
 
-            if (escolha == 0) break;
+            if (escolha == 0)
+                break;
 
             if (escolha > 0 && escolha <= cardapio.size()) {
                 try {
@@ -557,11 +592,19 @@ public class MenuConsole {
                 scanner.nextLine();
 
                 switch (opcao) {
-                    case 1: calcularContaMesa(); break;
-                    case 2: gerarRecibo(); break;
-                    case 3: gerarRelatorioEvento(); break;
-                    case 4: return;
-                    default: System.out.println("Opção inválida!");
+                    case 1:
+                        calcularContaMesa();
+                        break;
+                    case 2:
+                        gerarRecibo();
+                        break;
+                    case 3:
+                        gerarRelatorioEvento();
+                        break;
+                    case 4:
+                        return;
+                    default:
+                        System.out.println("Opção inválida!");
                 }
             } catch (java.util.InputMismatchException e) {
                 System.out.println("Entrada inválida.");
@@ -576,7 +619,7 @@ public class MenuConsole {
             return;
         }
 
-        // NOVIDADE: Exibir as MESAS CADASTRADAS antes de pedir o número
+        // mesas cadastradas
         System.out.println("\n---------------------------------");
         System.out.println("MESAS CADASTRADAS:");
         for (Mesa mesa : mesas) {
@@ -618,7 +661,7 @@ public class MenuConsole {
     private static void gerarRecibo() {
         System.out.print("Número da mesa: ");
         int numeroMesa = scanner.nextInt();
-        scanner.nextLine(); // Limpar buffer
+        scanner.nextLine();
 
         System.out.print("Forma de pagamento: ");
         String formaPagamento = scanner.nextLine();
@@ -633,7 +676,7 @@ public class MenuConsole {
             Map<String, Integer> contagemItens = new HashMap<>();
             double totalBruto = 0.0;
 
-            // 1. Coleta e contagem dos itens
+            // contagem dos itens
             for (Pedido pedido : mesa.getPedidos()) {
                 for (ItemMenu item : pedido.getItens()) {
                     String nomeItem = item.getNome();
@@ -644,7 +687,6 @@ public class MenuConsole {
 
             double totalFinal = mesa.calcularContaTotal();
 
-            // 2. Impressão do Recibo Agregado
             System.out.println("\n--- RECIBO MESA " + numeroMesa + " ---");
 
             System.out.println("\nITENS CONSUMIDOS:");
@@ -702,10 +744,9 @@ public class MenuConsole {
 
     private static void salvarDados() {
         try {
-            // Salvar eventos
+
             Persistencia.salvarEventos(eventos);
 
-            // Salvar cardápio atual (assumindo que o cardápio pode mudar)
             List<ItemMenu> cardapio = Persistencia.carregarCardapio();
             Persistencia.salvarCardapio(cardapio);
 
