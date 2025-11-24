@@ -3,8 +3,8 @@
 Sistema desenvolvido em Java para gerenciamento completo de eventos da empresa "Eventos VIP". Permite o controle de convidados, mesas, garçons, pedidos, pagamentos e geração de relatórios.
 
 ## Grupo
-- Luna Mendes
-- Lígia Santos
+- Luna Parentes Fortes Mendes
+- Lígia Vitória Araújo dos Santos
 
 ## Matéria
 Programaçao Orientada a Objetos - Professor Samuel
